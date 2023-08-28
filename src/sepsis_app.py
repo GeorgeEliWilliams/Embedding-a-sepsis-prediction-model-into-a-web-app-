@@ -1,10 +1,11 @@
+# import libraries
 from fastapi import FastAPI
-from pydantic import BaseModel
-import pickle
-import json
+from pydantic import BaseModel #to setup data format
+import pickle #to load the saved model
+import json #to convert json object into a python dictionary
 
 # create a fastapi instance
-app = FastAPI
+app = FastAPI()
 
 # features/inputs that will be passed to the model along with the dtypes
 class InputData(BaseModel):
@@ -26,7 +27,7 @@ with open("models.pkl", "rb") as model_file:
 @app.post('/sepsis_prediction')
 def sepsis_prediction(model_parameters : InputData):
     input_features = model_parameters.model_dump_json
-    input_dictionary = json.loads(input_features)
+    input_dictionary = json.loads(input_features) #here we convert the json object into a python dict
 
     glucose = input_dictionary['Plasma_glucose']
     BW1 = input_dictionary['Blood_Work_Result_1']
@@ -38,14 +39,14 @@ def sepsis_prediction(model_parameters : InputData):
     Age = input_dictionary['Age']
     Insurance = input_dictionary['Insurance']
 
-    input_list = [glucose, BW1, BP, BW2, BW3, BMI, BW4, Age, Insurance]
+    input_list = [glucose, BW1, BP, BW2, BW3, BMI, BW4, Age, Insurance] #here we extract the dictionary values and convert them into a list
 
     prediction = sepsis_model.predict([input_list])
 
     if prediction[0] == 0:
         return 'The individual does not have sepsis'
     else:
-        return 'The individual hs sepsis'
+        return 'The individual has sepsis'
 
 
 
