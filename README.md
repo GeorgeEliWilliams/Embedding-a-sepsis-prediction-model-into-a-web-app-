@@ -112,3 +112,5 @@ Here are some ressources you would read to have a good understanding of FastAPI 
 # [George Williams](https://www.linkedin.com/in/georgeeliwilliams/)
 
 ## [Emailme](williamsgeorge950@gmai.com)
+
+## here is the link to my article on LinkedIn, https://www.linkedin.com/posts/georgeeliwilliams_predicting-sepsis-with-technology-building-activity-7099175223903567872--4vk?utm_source=share&utm_medium=member_desktop
